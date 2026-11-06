@@ -1,1 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金業工程有限公司 | 高端室內設計與裝修工程</title>
+    
+    <!-- Google Fonts: Noto Serif TC for elegant Traditional Chinese typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Serif TC"', 'serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    },
+                    colors: {
+                        gold: {
+                            light: '#E6D3A3',
+                            DEFAULT: '#C5A059', // Rich metallic gold
+                            dark: '#A3803D',
+                        },
+                        cream: {
+                            DEFAULT: '#FDFCF8',
+                            dark: '#F3EFE6',
+                        },
+                        charcoal: {
+                            light: '#333333',
+                            DEFAULT: '#1A1A1A',
+                        }
+                    },
+                    boxShadow: {
+                        'gold': '0 4px 14px 0 rgba(197, 160, 89, 0.39)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for extra luxury feel */
+        body {
+            background-color: #FDFCF8;
+            color: #1A1A1A;
+        }
+        
+        .text-gradient-gold {
+            background: linear-gradient(to right, #C5A059, #E6D3A3, #C5A059);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gold-border-bottom {
+            position: relative;
+        }
+        .gold-border-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: #C5A059;
+        }
+
+        /* Portfolio Image Hover Effect */
+        .portfolio-item {
+            overflow: hidden;
+        }
+        .portfolio-item img {
+            transition: transform 0.7s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.08);
+        }
+        .portfolio-overlay {
+            background: linear-gradient(to top, rgba(26,26,26,0.9), rgba(26,26,26,0.2));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* Input fields premium styling */
+        .premium-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #d1d5db;
+            border-radius: 0;
+            padding: 0.75rem 0;
+            transition: border-color 0.3s ease;
+        }
+        .premium-input:focus {
+            outline: none;
+            border-bottom: 1px solid #C5A059;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="font-serif antialiased selection:bg-gold selection:text-white">
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 px-6 md:px-12 bg-transparent text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex flex-col items-start group">
+                <h1 class="text-2xl md:text-3xl font-bold tracking-wider transition-colors duration-300">金業工程</h1>
+                <span class="text-xs md:text-sm tracking-widest text-gold-light group-hover:text-gold transition-colors">Kam Yip Engineering</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="hover:text-gold transition-colors duration-300">首頁</a>
+                <a href="#about" class="hover:text-gold transition-colors duration-300">關於我們</a>
+                <a href="#services" class="hover:text-gold transition-colors duration-300">服務範疇</a>
+                <a href="#portfolio" class="hover:text-gold transition-colors duration-300">工程案例</a>
+                <a href="#contact" class="hover:text-gold transition-colors duration-300">聯絡我們</a>
+                <a href="#quote" class="px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-white transition-all duration-300 rounded-sm">
+                    免費報價
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white text-charcoal shadow-lg border-t border-gray-100 flex-col items-center py-6 space-y-4 md:hidden">
+            <a href="#home" class="mobile-link text-lg hover:text-gold transition-colors">首頁</a>
+            <a href="#about" class="mobile-link text-lg hover:text-gold transition-colors">關於我們</a>
+            <a href="#services" class="mobile-link text-lg hover:text-gold transition-colors">服務範疇</a>
+            <a href="#portfolio" class="mobile-link text-lg hover:text-gold transition-colors">工程案例</a>
+            <a href="#contact" class="mobile-link text-lg hover:text-gold transition-colors">聯絡我們</a>
+            <a href="#quote" class="mobile-link px-8 py-2 bg-gold text-white rounded-sm w-4/5 text-center mt-4">免費報價</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center">
+            <div class="absolute inset-0 bg-charcoal/60"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+            <p class="text-gold-light tracking-[0.3em] mb-4 text-sm md:text-base uppercase">Premium Engineering & Interior Design</p>
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                打造極致奢華<br>
+                <span class="text-gradient-gold">彰顯品味生活</span>
+            </h2>
+            <p class="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                專注高端住宅與商業空間裝修工程，以匠心獨運的工藝與極致美學，為您構築夢想中的完美空間。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#portfolio" class="px-10 py-4 bg-gold text-white hover:bg-gold-dark transition-all duration-300 shadow-gold rounded-sm w-full sm:w-auto text-center">
+                    探索案例
+                </a>
+                <a href="#contact" class="px-10 py-4 bg-transparent border border-white text-white hover:bg-white hover:text-charcoal transition-all duration-300 rounded-sm w-full sm:w-auto text-center">
+                    預約諮詢
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="About Us Interior" class="w-full h-[500px] object-cover shadow-2xl rounded-sm">
+                    <div class="absolute -bottom-8 -right-8 bg-gold p-8 text-white hidden md:block rounded-sm shadow-xl">
+                        <p class="text-4xl font-bold mb-1">20+</p>
+                        <p class="text-sm tracking-wider">年專業工程經驗</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-gold tracking-widest text-sm uppercase mb-3">About Us</h3>
+                    <h2 class="text-3xl md:text-4xl font-bold text-charcoal mb-8 gold-border-bottom pb-4 w-max ml-0">關於我們</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg text-justify">
+                        <strong class="text-charcoal">金業工程有限公司</strong>扎根香港多年，致力於為高端客戶提供一站式、無可挑剔的室內設計與裝修工程服務。
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed text-justify">
+                        從奢華豪宅、獨立別墅到甲級寫字樓及高級商舖，我們以「輕奢、優雅、專業」為核心理念。結合頂級建材與精湛工藝，我們的專業團隊嚴格把控每一個細節，確保每一個項目都能完美呈現您的品味與個性，打造超越期待的生活與工作空間。
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-gold mr-4"></i> 專屬項目經理全程跟進
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-gold mr-4"></i> 透明報價，絕無隱藏收費
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-gold mr-4"></i> 完善身後服務及保養承諾
+                        </li>
+                    </ul>
+
+                    <a href="#services" class="inline-flex items-center text-gold hover:text-gold-dark font-medium transition-colors group">
+                        了解我們的服務 <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
+            <h3 class="text-gold tracking-widest text-sm uppercase mb-3">Our Services</h3>
+            <h2 class="text-3xl md:text-4xl font-bold text-charcoal mb-16 gold-border-bottom mx-auto pb-4">專業服務範疇</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Service 1 -->
+                <div class="group bg-cream-dark p-10 rounded-sm hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-gold/10 border border-transparent hover:border-gold/30">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center mb-6 text-gold text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-charcoal mb-4">住宅裝修工程</h4>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        專注於洋房、獨立屋及高級住宅。提供從空間規劃、材料選購到全屋裝修的一站式服務，將奢華美學融入日常起居。
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-cream-dark p-10 rounded-sm hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-gold/10 border border-transparent hover:border-gold/30">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center mb-6 text-gold text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-charcoal mb-4">辦公室及商舖工程</h4>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        為零售品牌及企業打造極具質感的商業空間。兼顧品牌形象與實用功能，優化空間動線，提升商業價值。
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-cream-dark p-10 rounded-sm hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-gold/10 border border-transparent hover:border-gold/30">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center mb-6 text-gold text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-charcoal mb-4">機電及維修工程</h4>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        擁有合資格專業技工團隊，提供電力裝置、冷氣通風、給排水系統等綜合機電工程及優質的售後維修保養。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h3 class="text-gold tracking-widest text-sm uppercase mb-3">Portfolio</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-charcoal mb-4 gold-border-bottom mx-auto pb-4">精選工程案例</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl mx-auto">欣賞我們近期的經典傑作，見證我們如何將設計圖紙轉化為令人驚嘆的奢華空間。</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                <!-- Item 1 -->
+                <div class="portfolio-item relative rounded-sm cursor-pointer h-[300px] md:h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="半山尊貴豪宅" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-2 translate-y-4 group-hover:translate-y-0 transition-transform">半山尊貴豪宅</h4>
+                        <p class="text-gold-light">全屋裝修及傢俬訂製</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="portfolio-item relative rounded-sm cursor-pointer h-[300px] md:h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="中環甲級寫字樓" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-2">中環甲級寫字樓</h4>
+                        <p class="text-gold-light">辦公室翻新及空間規劃</p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="portfolio-item relative rounded-sm cursor-pointer h-[300px] md:h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="尖沙咀精品商舖" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-2">尖沙咀精品商舖</h4>
+                        <p class="text-gold-light">商舖設計及裝修工程</p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="portfolio-item relative rounded-sm cursor-pointer h-[300px] md:h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="九龍塘獨立別墅" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-2">九龍塘獨立別墅</h4>
+                        <p class="text-gold-light">豪華衛浴及客廳改建</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button class="px-8 py-3 border border-charcoal text-charcoal hover:bg-charcoal hover:text-white transition-colors duration-300 rounded-sm">
+                    查看更多案例
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-24 bg-charcoal text-white relative overflow-hidden">
+        <!-- Abstract Gold Accent -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gold/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 gold-border-bottom mx-auto pb-4">為何選擇我們</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6 border border-white/10 hover:border-gold/50 transition-colors duration-300 bg-white/5 rounded-sm backdrop-blur-sm">
+                    <i class="fas fa-gem text-4xl text-gold mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">奢華品質</h4>
+                    <p class="text-gray-400 text-sm">嚴格篩選頂級建材，注重細節，營造輕奢高雅的空間氛圍。</p>
+                </div>
+                <div class="p-6 border border-white/10 hover:border-gold/50 transition-colors duration-300 bg-white/5 rounded-sm backdrop-blur-sm">
+                    <i class="fas fa-users-cog text-4xl text-gold mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">專業團隊</h4>
+                    <p class="text-gray-400 text-sm">資深項目經理及持牌專業技工，具備豐富的高端工程經驗。</p>
+                </div>
+                <div class="p-6 border border-white/10 hover:border-gold/50 transition-colors duration-300 bg-white/5 rounded-sm backdrop-blur-sm">
+                    <i class="fas fa-clock text-4xl text-gold mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">準時交付</h4>
+                    <p class="text-gray-400 text-sm">精準的時間表管理，嚴格監督施工進度，確保工程如期完成。</p>
+                </div>
+                <div class="p-6 border border-white/10 hover:border-gold/50 transition-colors duration-300 bg-white/5 rounded-sm backdrop-blur-sm">
+                    <i class="fas fa-shield-alt text-4xl text-gold mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">星級保養</h4>
+                    <p class="text-gray-400 text-sm">提供完善的售後服務及工程保養承諾，讓您無後顧之憂。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Quote Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
+                <!-- Contact Info -->
+                <div class="lg:col-span-2 space-y-8">
+                    <div>
+                        <h3 class="text-gold tracking-widest text-sm uppercase mb-3">Contact Us</h3>
+                        <h2 class="text-3xl font-bold text-charcoal mb-4 gold-border-bottom pb-4 w-max ml-0">聯絡我們</h2>
+                    </div>
+                    <p class="text-gray-600 mb-8">
+                        準備好開啟您的奢華空間之旅了嗎？歡迎與我們的專業團隊聯繫，獲取免費的工程諮詢與初步報價。
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-cream-dark flex items-center justify-center rounded-full text-gold mr-4 shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-charcoal mb-1">聯絡電話</h5>
+                                <p class="text-gray-600 text-sm">+852 9521 2189</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-cream-dark flex items-center justify-center rounded-full text-gold mr-4 shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-charcoal mb-1">電郵地址</h5>
+                                <p class="text-gray-600 text-sm">info@kamyip-engineering.com.hk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div id="quote" class="lg:col-span-3 bg-cream p-8 md:p-12 rounded-sm shadow-xl shadow-gray-200/50 border border-gray-100">
+                    <h3 class="text-2xl font-bold text-charcoal mb-8">獲取免費報價</h3>
+                    <form id="quoteForm" class="space-y-6" onsubmit="submitQuoteForm(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex flex-col">
+                                <label for="name" class="text-xs text-gray-500 mb-1 tracking-wider uppercase">姓名 / Name *</label>
+                                <input type="text" id="name" required class="premium-input w-full text-charcoal">
+                            </div>
+                            <div class="flex flex-col">
+                                <label for="phone" class="text-xs text-gray-500 mb-1 tracking-wider uppercase">聯絡電話 / Phone *</label>
+                                <input type="tel" id="phone" required class="premium-input w-full text-charcoal">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col">
+                            <label for="service" class="text-xs text-gray-500 mb-1 tracking-wider uppercase">工程類型 / Service Type</label>
+                            <select id="service" class="premium-input w-full text-charcoal bg-transparent">
+                                <option value="residential">住宅裝修工程</option>
+                                <option value="commercial">辦公室及商舖工程</option>
+                                <option value="maintenance">機電及維修工程</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label for="message" class="text-xs text-gray-500 mb-1 tracking-wider uppercase">工程細節或留言 / Details</label>
+                            <textarea id="message" rows="4" class="premium-input w-full text-charcoal resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full py-4 bg-charcoal text-white hover:bg-gold transition-colors duration-300 mt-4 rounded-sm font-medium tracking-widest uppercase text-sm">
+                            發送訊息 Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111111] text-gray-400 py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold text-white mb-1">金業工程</h2>
+                <p class="text-gold-light text-sm mb-4">Kam Yip Engineering</p>
+                <p class="text-xs">專注於高端別墅、豪宅及商業空間的頂級裝修工程。</p>
+            </div>
+            
+            <div class="flex justify-center space-x-6 text-xl">
+                <a href="#" class="hover:text-gold transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-gold transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-gold transition-colors"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <div class="text-center md:text-right text-xs space-y-2">
+                <p>&copy; 2026 金業工程有限公司. All Rights Reserved.</p>
+                <p>Designed with <span class="text-gold">Luxury</span> in Mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Modal for Notifications -->
+    <div id="customModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white p-8 rounded-sm shadow-2xl max-w-md w-full mx-4 border-t-4 border-gold">
+            <h3 id="modalTitle" class="text-2xl font-bold text-charcoal mb-4">提示</h3>
+            <p id="modalText" class="text-gray-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full py-3 bg-gold text-white hover:bg-gold-dark transition-colors duration-300 rounded-sm font-medium tracking-widest uppercase">確定 / OK</button>
+        </div>
+    </div>
+
+    <!-- Firebase Database Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Environment variables provided by Artifacts framework
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'kamyip-demo-app';
+        const firebaseConfig = {
+                        apiKey: "AIzaSyCCCDl8tgb1IoqeRKiY5PcF0be1EMbiO3U",
+                        authDomain: "kamyip-36dac.firebaseapp.com",
+                        projectId: "kamyip-36dac",
+                        storageBucket: "kamyip-36dac.firebasestorage.app",
+                        messagingSenderId: "509915953766",
+                        appId: "1:509915953766:web:662959584b8c7679574ba7",
+                        measurementId: "G-TE2TDECWRF"
+                    };
+        
+        let db, auth;
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            
+            // Authenticate before allowing database writes
+            if (typeof __initial_auth_token !== 'undefined') {
+                signInWithCustomToken(auth, __initial_auth_token).catch(e => {
+                    console.error("Auth error", e);
+                    signInAnonymously(auth);
+                });
+            } else {
+                signInAnonymously(auth);
+            }
+        } catch (e) {
+            console.error("Firebase init error", e);
+        }
+
+        // Global functions for form
+        window.submitQuoteForm = async function(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerText;
+            
+            // Gather form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            submitBtn.innerText = "發送中 (Sending)...";
+            submitBtn.disabled = true;
+
+            try {
+                if (!auth || !auth.currentUser) {
+                    throw new Error("系統連線準備中，請稍後再試。");
+                }
+                
+                // Saving data to a public collection path as per database rules
+                const quotesRef = collection(db, 'artifacts', appId, 'public', 'data', 'quotes');
+                await addDoc(quotesRef, {
+                    name: name,
+                    phone: phone,
+                    service: service,
+                    message: message,
+                    timestamp: new Date().toISOString()
+                });
+                
+                showModal("感謝您的查詢！", "您的報價需求已成功提交至資料庫。我們的專業團隊將盡快透過 " + phone + " 與您聯絡。");
+                document.getElementById('quoteForm').reset();
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                showModal("提交失敗", "系統發生錯誤或尚未完全載入，請稍後再試。");
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        };
+
+        window.showModal = function(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        window.closeModal = function() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+    </script>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const logoText = navbar.querySelector('h1');
+        const logoSub = navbar.querySelector('span');
+        const navLinks = navbar.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Scrolled state
+                navbar.classList.remove('bg-transparent', 'text-white', 'py-4');
+                navbar.classList.add('bg-white', 'text-charcoal', 'shadow-md', 'py-2');
+                
+                logoText.classList.remove('text-white');
+                logoText.classList.add('text-charcoal');
+                logoSub.classList.remove('text-gold-light');
+                logoSub.classList.add('text-gold');
+                
+                // Keep the button styling distinct
+                navLinks.forEach(link => {
+                    if(!link.classList.contains('border-gold')) {
+                         link.classList.remove('text-white');
+                         // Default tailwind class inherited, just hover effect applied in CSS
+                    }
+                });
+
+            } else {
+                // Top state
+                navbar.classList.add('bg-transparent', 'text-white', 'py-4');
+                navbar.classList.remove('bg-white', 'text-charcoal', 'shadow-md', 'py-2');
+                
+                logoText.classList.add('text-white');
+                logoText.classList.remove('text-charcoal');
+                logoSub.classList.add('text-gold-light');
+                logoSub.classList.remove('text-gold');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            
+            // Adjust icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if(mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                // Ensure navbar retains its solid background if menu closed while scrolled
+                if(window.scrollY <= 50) {
+                   navbar.classList.add('bg-transparent');
+                   navbar.classList.remove('bg-white');
+                }
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                // Force solid background when mobile menu is open
+                navbar.classList.remove('bg-transparent');
+                navbar.classList.add('bg-white', 'text-charcoal');
+                logoText.classList.add('text-charcoal');
+                logoText.classList.remove('text-white');
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
